@@ -15,10 +15,11 @@ import useStyles from "./styles/authStyles";
 import { createAPIEndPoint } from "../../api";
 import { AdminContext } from "../../context/AdminAuthContext";
 import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 export default function Login() {
   const classes = useStyles();
-  const { setIsAuth, setIsUser } = useContext(AdminContext);
+  const { setIsAuth,setIsAdmin } = useContext(AdminContext);
   let history = useHistory();
 
   return (
@@ -39,15 +40,15 @@ export default function Login() {
           initialValues={{ email: "", password: "" }}
           onSubmit={(data, { setSubmitting, resetForm }) => {
             setSubmitting(true);
-            createAPIEndPoint("auth/loginCustomer")
+            createAPIEndPoint("auth/loginEmployee")
               .create(data)
               .then((res) => {
                 alert("SUCCESS!!");
                 setIsAuth(true);
-                setIsUser(true);
+                setIsAdmin(true);
                 localStorage.setItem("auth", true);
-                localStorage.setItem("isUser", true);
-                history.push("/home");
+                localStorage.setItem("isAdmin",true);
+                history.push("/dashboard");
                 console.log(res);
               })
               .catch((err) => {
@@ -92,7 +93,7 @@ export default function Login() {
                     </span>
                   </Link>
                 </Grid>
-                <Grid item>
+                {/* <Grid item>
                   <Link
                     href="/signup"
                     variant="body2"
@@ -103,13 +104,13 @@ export default function Login() {
                       {"Don't have an account? Sign Up"}
                     </span>
                   </Link>
-                </Grid>
+                </Grid> */}
               </Grid>
             </form>
           )}
         </Formik>
       </div>
-
+     
       <Box mt={12}>
         <Copyright />
       </Box>

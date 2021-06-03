@@ -39,18 +39,18 @@ export default function Login() {
             confirmpassword: "",
           }}
           onSubmit={(data, { setSubmitting, resetForm }) => {
-            let {confirmpassword, ...rest} = data ;
+            let { confirmpassword, ...rest } = data;
             let record = rest;
             setSubmitting(true);
             createAPIEndPoint("user")
               .create(record)
               .then((res) => {
-                alert("CREATED!!")
-                console.log(res)
+                alert("CREATED!!");
+                console.log(res);
               })
-              .catch(err => {
-                console.log("ERROR!====>",err.message)
-              })
+              .catch((err) => {
+                console.log("ERROR!====>", err.message);
+              });
           }}
         >
           {({
@@ -99,12 +99,18 @@ export default function Login() {
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
-                    Forgot password?
+                    <span className="text-sm text-indigo-500">
+                      {" "}
+                      Forgot password?{" "}
+                    </span>
                   </Link>
                 </Grid>
                 <Grid item>
                   <Link href="/" variant="body2">
-                    {"Have an account? Sign In"}
+                    <span className="text-sm text-indigo-500">
+                      {" "}
+                      {"Have an account? Sign In"}
+                    </span>
                   </Link>
                 </Grid>
               </Grid>

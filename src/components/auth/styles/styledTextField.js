@@ -4,7 +4,7 @@ import { TextField } from "@material-ui/core";
 const styledTextField = styled(TextField)`
   ${({ theme }) => `
   .MuiOutlinedInput-root {  
-    border-radius:50px
+    border-radius:10px
   }  
   `}
 `;

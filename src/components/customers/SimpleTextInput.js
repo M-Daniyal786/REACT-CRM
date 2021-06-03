@@ -1,9 +1,14 @@
 import React from "react";
 import { Field } from "formik";
-import useStyles from "./styles/authStyles";
-import styledTextField from "./styles/styledTextField";
+import { makeStyles } from "@material-ui/core";
 
-function TextInput(props) {
+const useStyles = makeStyles(theme =>({
+  textField:{
+    width:"80%"
+  }
+}))
+
+function SimpleTextInput(props) {
   const classes = useStyles();
   return (
     
@@ -12,23 +17,20 @@ function TextInput(props) {
           variant="outlined"
           margin="normal"
           required
-          fullWidth
+          disabled={props.disabled}
           id={props.id}
           label={props.label}
           type={props.type}
           name={props.name}
           value={props.value}
           onChange={props.onChange}
-          InputProps={{
-            classes: {
-              root: classes.root,
-            },
-          }}
           autoFocus
-          component={styledTextField}
+          component={props.component}
+          multiline={props.multiline}
+          rows={props.rows}
         />
      
   );
 }
 
-export default TextInput;
+export default SimpleTextInput;

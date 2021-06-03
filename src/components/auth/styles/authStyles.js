@@ -1,8 +1,9 @@
+import { indigo } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: "white",
+    // color: "white",
   },
   paper: {
     marginTop: theme.spacing(20),
@@ -13,11 +14,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     padding: 50,
     borderRadius: 10,
-    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    boxShadow: "0 3px 5px 2px rgba(100, 105, 135, .3)",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: indigo[400]
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -30,11 +31,14 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     padding: "10px 0px 10px 0px",
     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-    borderRadius: "20px",
+    borderRadius: "5px",
+    backgroundColor: indigo[400],
+    color:"white",
     transition: "transform .5s",
     "&:hover": {
       color: "#fff",
-      transform: "scale(1.08)",
+      backgroundColor: indigo[500],
+      transform: "scale(1.03)",
       
     },
   },
