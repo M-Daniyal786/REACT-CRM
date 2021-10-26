@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     // color: "white",
   },
   paper: {
-    marginTop: theme.spacing(20),
+    // marginTop: theme.spacing(20),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   headingStyle: {
-    color: "black",
+    color: indigo[400],
   },
   submit: {
     margin: theme.spacing(3, 0, 2),

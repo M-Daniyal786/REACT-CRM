@@ -3,9 +3,44 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./Checkout.css";
 import { BASE_URL, createAPIEndPoint } from "../../api/index";
 import axios from "axios";
-import { Paper } from "@material-ui/core";
+import { makeStyles, Paper } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  paperStyles: {
+    width: "40%",
+    height: "80%",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%",
+      height: "100%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      height: "100%",
+    },
+    [theme.breakpoints.only("lg")]: {
+      width: "40%",
+      height: "90%",
+    },
+    [theme.breakpoints.only("md")]: {
+      width: "60%",
+      height: "70%",
+    },
+  },
+  formStyles: {
+    padding: 20,
+    [theme.breakpoints.down("xs")]: {
+      display: "flex",
+      flexWrap: "wrap",
+      marginLeft: 15,
+      justifyContent: "center",
+      width: "100%",
+    },
+  },
+}));
 
 export default function CheckoutForm(props) {
+  const classes = useStyles();
+
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
@@ -19,8 +54,11 @@ export default function CheckoutForm(props) {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState(0);
   const [currency, setCurrency] = useState("");
-  // const [name, setName] = useState("")
-
+  const [orderId,setOrderId] = useState("");
+  const [customerId,setCustomerId] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [customerAddress, setCustomerAddress] = useState("");
+  
   const { paymentId } = props;
 
   const cardStyle = {
@@ -86,16 +124,20 @@ export default function CheckoutForm(props) {
       .then((res) => {
         console.log(res);
         setAmount(res.data.amount);
+        setOrderId(res.data.orderId);
         setCurrency(res.data.currency);
+        setCustomerId(res.data.customerId.id);
+        setCustomerName(res.data.customerId.customerName);
+        setCustomerAddress(res.data.customerId.customerAddress);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
   return (
-    <Paper elevation={3} style={{ width: "40%", height: "70%" }}>
-      <div class="flex flex-col h-full justify-evenly">
-        <div className="h-16 w-full flex items-center text-indigo-500 font-semibold font-montserrat justify-center text-2xl ">
+    <Paper elevation={3} className={classes.paperStyles}>
+      <div class="flex flex-col h-full justify-evenly ">
+        {/* <div className="h-16 w-full flex items-center text-indigo-500 font-semibold font-montserrat justify-center text-2xl ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-14 w-14"
@@ -112,7 +154,6 @@ export default function CheckoutForm(props) {
           <span class="mr-3 ml-1 text-5xl">Di Pixel</span>
         </div>
         <div class="flex justify-center">
-          {/* <span class="text-indigo-500 font-semibold text-2xl font-montserrat">Amount: </span> */}
           {currency == "USD" ? (
             <span class="font-semibold text-2xl font-montserrat text-gray-600">
               $
@@ -129,9 +170,46 @@ export default function CheckoutForm(props) {
           <span class="font-semibold text-4xl font-montserrat text-gray-600">
             {amount}
           </span>
+        </div> */}
+        <div class="bg-white h-screen pt-5 flex-wrap">
+          <div class="flex w-full justify-center flex-wrap">
+            <div class=" bg-indigo-400 h-14 flex justify-center items-center w-10/12 rounded-lg box-border shadow-lg">
+              <span class="text-white text-2xl">RECEIPT</span>
+            </div>
+
+            <div class=" bg-indigo-400 h-auto flex w-10/12 rounded-lg box-border justify-between shadow-lg mt-5 pb-3 flex-wrap">
+              <div class="w-full flex justify-between">
+                <span class="text-white text-lg p-5 ">Order ID :</span>
+                <span class="text-white text-lg p-5 ">{orderId}</span>
+              </div>
+              <div class="w-full flex justify-between">
+                <span class="text-white text-lg p-5 ">Customer Name :</span>
+                <span class="text-white text-lg p-5 ">{customerName}</span>
+              </div>
+              <div class="w-full flex justify-between">
+                <span class="text-white text-lg p-5 ">Customer Address :</span>
+                <span class="text-white text-lg p-5 ">{customerAddress}</span>
+              </div>
+              <div class="flex justify-center h-1 w-full">
+                <div class="w-full bg-white" style={{ height: "2px" }}></div>
+              </div>
+              <div class="w-full flex justify-between">
+                <span class="text-white text-lg p-5 ">Amount :</span>
+                <span class="text-white text-lg p-5 ">{amount}</span>
+              </div>
+              <div class="w-full flex justify-between">
+                <span class="text-white text-lg p-5 ">Currency :</span>
+                <span class="text-white text-lg p-5 ">{currency}</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <form id="payment-form" onSubmit={handleSubmit} style={{ padding: 20 }}>
+        <form
+          id="payment-form"
+          onSubmit={handleSubmit}
+          className={classes.formStyles}
+        >
           <input
             id="input"
             type="text"

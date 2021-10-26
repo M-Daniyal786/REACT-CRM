@@ -1,9 +1,62 @@
-import React, { useState } from "react";
-// import DoughnutChart from "./DoughnutChart";
-// import BarChart from "./BarChart";
+import React, { useEffect, useState } from "react";
+import DoughnutChart from "./DoughnutChart";
+import BarChart from "./BarChart";
+import { createAPIEndPoint } from "../../api";
+import {
+  FormControlLabel,
+  FormGroup,
+  makeStyles,
+  Switch,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({}));
+
 const MainAdmin = () => {
   // const [show, setShow] = useState(false);
   // const [profile, setProfile] = useState(false);
+
+  const classes = useStyles();
+
+  const [dataset1, setDataset1] = useState([]);
+  const [dataset2, setDataset2] = useState([]);
+
+  const [switchOrder, setSwitchOrder] = useState(true);
+  const [switchRevenue, setSwitchRevenue] = useState(true);
+  const [checked, setChecked] = React.useState(false);
+
+  const firstName = dataset1.map((item) => {
+    return item.firstName;
+  });
+  const orders = dataset1.map((item) => {
+    return item.numberOfCustomer;
+  });
+  const name = dataset2.map((item) => {
+    return item.firstName;
+  });
+  const revenue = dataset2.map((item) => {
+    return item.revenueGenerated;
+  });
+
+  const toggleOrderChecked = () => {
+    setSwitchOrder((prev) => !prev);
+  };
+  const toggleRevenueChecked = () => {
+    setSwitchRevenue((prev) => !prev);
+  };
+
+  useEffect(() => {
+    createAPIEndPoint("employee/performance")
+      .fetchAll()
+      .then((res) => {
+        console.log(res);
+        setDataset1(res.data.employeesBasedOnCustomer);
+        setDataset2(res.data.employeesBasedOnRevenue);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -90,16 +143,68 @@ const MainAdmin = () => {
           <div class="p-4 flex items-center justify-center">
             <div class="p-3 rounded-full text-orange-500 dark:text-orange-100 bg-orange-100 dark:bg-orange-500 mr-4 w-4/6">
               {/* charts go here */}
-              {/* <BarChart /> */}
+              {switchOrder ? (
+                <BarChart
+                  labels={firstName}
+                  data={orders}
+                  title={"No. of Orders"}
+                />
+              ) : (
+                <DoughnutChart
+                  labels={firstName}
+                  data={orders}
+                  title={"No. of Orders"}
+                />
+              )}
             </div>
+          </div>
+          <div class="ml-10 mb-3">
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Switch
+                    size="small"
+                    checked={switchOrder}
+                    onChange={toggleOrderChecked}
+                  />
+                }
+                label=""
+              />
+            </FormGroup>
           </div>
         </div>
         <div class="min-w-0 rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-800">
           <div class="p-4 flex items-center justify-center">
             <div class="p-3 rounded-full text-orange-500 dark:text-orange-100 bg-orange-100 dark:bg-orange-500 mr-4 w-4/6">
               {/* charts go here */}
-              {/* <DoughnutChart /> */}
+              {switchRevenue ? (
+                <DoughnutChart
+                  labels={name}
+                  data={revenue}
+                  title={"Top Employee w.r.t revenue"}
+                />
+              ) : (
+                <BarChart
+                  labels={name}
+                  data={revenue}
+                  title={"Top Employee w.r.t revenue"}
+                />
+              )}
             </div>
+          </div>
+          <div class="ml-10 mb-3">
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Switch
+                    size="small"
+                    checked={switchRevenue}
+                    onChange={toggleRevenueChecked}
+                  />
+                }
+                label=""
+              />
+            </FormGroup>
           </div>
         </div>
       </div>

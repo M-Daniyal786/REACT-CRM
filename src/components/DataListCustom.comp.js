@@ -109,7 +109,8 @@ function DataListCustom(props) {
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                   {columns.map((column) => {
                     const value = row.referredEmployeeId
-                      ? row[column.id] || row.referredEmployeeId[0]["firstName"]
+                      // ? row[column.id] || row.referredEmployeeId[0]["firstName"]
+                      ? row[column.id] || row.referredEmployeeId["firstName"]
                       : row[column.id];
 
                     return (

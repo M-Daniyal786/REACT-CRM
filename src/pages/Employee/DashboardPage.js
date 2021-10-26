@@ -20,10 +20,10 @@ function DashboardPage() {
   return (
     // <Header />
 
-    <div class=" bg-gradient-to-r from-indigo-500 indigo-500 to-indigo-400">
+    <div class=" bg-gradient-to-r from-indigo-500 indigo-500 to-indigo-400 overflow-y-hidden">
       {/* <SidebarHeader /> */}
       <>
-        <div className="w-full h-full">
+        <div className="w-full h-screen">
           <div className="flex flex-no-wrap">
             {/* Sidebar starts */}
             <div className="w-64 absolute lg:relative bg-white shadow h-screen flex-col justify-between hidden lg:flex pb-12">
@@ -561,9 +561,9 @@ function DashboardPage() {
               </nav>
               {/* Navigation ends */}
               {/* Remove class [ h-64 ] when adding a card block */}
-              <div className="container mx-auto py-10 md:w-11/12 w-full">
+              <div style={{height:"85%"}} className="container mx-auto py-10 md:w-11/12 overflow-y-auto">
                 {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
-                <div className="w-full h-full ">
+               
                   {/* Place your content here */}
 
                   <Switch>
@@ -575,7 +575,7 @@ function DashboardPage() {
                       component={Invoice}
                     />
                   </Switch>
-                </div>
+              
               </div>
             </div>
           </div>

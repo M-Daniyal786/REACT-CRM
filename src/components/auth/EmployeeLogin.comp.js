@@ -23,7 +23,7 @@ export default function Login() {
   let history = useHistory();
 
   return (
-    <Container component="main" maxWidth="sm">
+    <Container component="main" maxWidth="sm" >
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>

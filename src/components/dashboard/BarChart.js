@@ -1,12 +1,30 @@
 import React from "react";
 import { Bar } from 'react-chartjs-2';
 
-const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+
+const options = {
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+        },
+      },
+    ],
+  },
+};
+
+function BarChart(props) {
+  
+
+ 
+
+const Data = {
+  labels: props.labels,
   datasets: [
     {
-      label: '# of Orders',
-      data: [12, 19, 3, 5, 2, 3],
+      label: props.title,
+      data: props.data,
       backgroundColor: [
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
@@ -28,22 +46,9 @@ const data = {
   ],
 };
 
-const options = {
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-        },
-      },
-    ],
-  },
-};
-
-function BarChart() {
   return (
     <div>
-      <Bar data={data} options={options} height={100} width={100}/>
+      <Bar data={Data} options={options} height={100} width={100}/>
     </div>
   );
 }
