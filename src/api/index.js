@@ -4,7 +4,8 @@ import axios from "axios";
 // export const FRONTEND_URL = "http://192.168.0.160:3000/"
 
 export const BASE_URL = "https://crm-dipixels.herokuapp.com/api/";
-export const FRONTEND_URL = "http://192.168.0.160:3000/";
+export const FRONTEND_URL =
+  "http://https://61791f5189bb6fc0e26e6ddc--pedantic-khorana-36432e.netlify.app/";
 
 export const createAPIEndPoint = (endpoint) => {
   let url = BASE_URL + endpoint + "/";
