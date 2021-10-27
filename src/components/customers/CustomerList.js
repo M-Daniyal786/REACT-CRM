@@ -37,7 +37,7 @@ function CustomerList(props) {
 
   useEffect(() => {
     let filter = { page };
-    filter.limit=5
+    filter.limit = 5;
     createAPIEndPoint("customer")
       .fetchFiltered({ params: filter })
       .then((res) => {
@@ -70,7 +70,6 @@ function CustomerList(props) {
         path={"customerdetails"}
         endPoint={"customer"}
       />
-    
     </div>
   );
 }

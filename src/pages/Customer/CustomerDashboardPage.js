@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import MainAdmin from "../../components/dashboard/MainAdmin";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   useRouteMatch,
   Link,
-  useHistory
+  useHistory,
 } from "react-router-dom";
 import Invoice from "../../components/Invoice/Invoice";
 

@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import MainAdmin from "../../components/dashboard/MainAdmin";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   useRouteMatch,
   Link,
-  useHistory
+  useHistory,
 } from "react-router-dom";
 import Invoice from "../../components/Invoice/Invoice";
 import Customers from "./Customers";
@@ -80,24 +79,24 @@ function DashboardPage() {
                     </button>
                   </li>
                   <Link to={`${match.url}/customers`}>
-                  <li className="flex w-full justify-between text-gray-600 cursor-pointer items-center mb-2">
-                    <button className="flex items-center hover:bg-indigo-400 focus:bg-indigo-500 focus:text-white hover:text-white focus:outline-none font-montserrat font-medium py-1.5 justify-items-start w-full rounded">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 mr-3 ml-2"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                        />
-                      </svg>
-                      <span className="text-sm">Customers</span>
-                    </button>
-                  </li>
+                    <li className="flex w-full justify-between text-gray-600 cursor-pointer items-center mb-2">
+                      <button className="flex items-center hover:bg-indigo-400 focus:bg-indigo-500 focus:text-white hover:text-white focus:outline-none font-montserrat font-medium py-1.5 justify-items-start w-full rounded">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-4 w-4 mr-3 ml-2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                          />
+                        </svg>
+                        <span className="text-sm">Customers</span>
+                      </button>
+                    </li>
                   </Link>
                   <Link to={`${match.url}/invoices`}>
                     <li className="flex w-full justify-between text-gray-600 cursor-pointer items-center mb-2">
@@ -237,13 +236,13 @@ function DashboardPage() {
                           <div className="py-1 px-3 bg-indigo-700 rounded text-white flex items-center justify-center text-xs"></div>
                         </li>
                         <Link>
-                        <li className="flex w-full justify-between text-gray-600 hover:text-indigo-700 cursor-pointer items-center mb-6">
-                          <div className="flex items-center">
-                            <span className="xl:text-base md:text-2xl text-base ml-2">
-                              Customer List
-                            </span>
-                          </div>
-                        </li>
+                          <li className="flex w-full justify-between text-gray-600 hover:text-indigo-700 cursor-pointer items-center mb-6">
+                            <div className="flex items-center">
+                              <span className="xl:text-base md:text-2xl text-base ml-2">
+                                Customer List
+                              </span>
+                            </div>
+                          </li>
                         </Link>
                         <li className="flex w-full justify-between text-gray-600 hover:text-indigo-700 cursor-pointer items-center mb-6">
                           <div className="flex items-center">
@@ -561,21 +560,26 @@ function DashboardPage() {
               </nav>
               {/* Navigation ends */}
               {/* Remove class [ h-64 ] when adding a card block */}
-              <div style={{height:"85%"}} className="container mx-auto py-10 md:w-11/12 overflow-y-auto">
+              <div
+                style={{ height: "85%" }}
+                className="container mx-auto py-10 md:w-11/12 overflow-y-auto"
+              >
                 {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
-               
-                  {/* Place your content here */}
 
-                  <Switch>
-                    <Route path={match.path} exact component={MainAdmin} />
-                    <Route path={`${match.path}/customers`} component={Customers} />
-                    <Route path={`${match.path}/customerdetails/:id`}  render={(props) => <CustomerDetails {...props} />} />
-                    <Route
-                      path={`${match.path}/invoices/`}
-                      component={Invoice}
-                    />
-                  </Switch>
-              
+                {/* Place your content here */}
+
+                <Switch>
+                  <Route path={match.path} exact component={MainAdmin} />
+                  <Route
+                    path={`${match.path}/customers`}
+                    component={Customers}
+                  />
+                  <Route
+                    path={`${match.path}/customerdetails/:id`}
+                    render={(props) => <CustomerDetails {...props} />}
+                  />
+                  <Route path={`${match.path}/invoices/`} component={Invoice} />
+                </Switch>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { Button, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
+import { Button, Grid, makeStyles, Paper } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import AddCustomerOrders from "../../components/customers/AddCustomerOrders";
 import CustomerOrderList from "../../components/customers/CustomerOrderList";
@@ -37,90 +37,98 @@ function CustomerDetails(props) {
   return (
     <div>
       <div>
-      <Paper className={classes.pageContent}>
-        {/* {Object.keys(data).map((key, index) => {
+        <Paper className={classes.pageContent}>
+          {/* {Object.keys(data).map((key, index) => {
           const myItem = data[key].toString();
 
           return ( */}
 
-        <Grid container>
-          <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
-            <p class="bg-indigo-400 p-2.5 w-full text-white rounded-tl rounded-bl">
-              Brand
-            </p>
+          <Grid container>
+            <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
+              <p class="bg-indigo-400 p-2.5 w-full text-white rounded-tl rounded-bl">
+                Brand
+              </p>
+            </Grid>
+            <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
+              <p class="bg-indigo-300 p-2.5 w-full text-white rounded-tr rounded-br">
+                {data.brand}
+              </p>
+            </Grid>
+            <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
+              <p class="bg-indigo-400 p-2.5 w-full text-white rounded-tl rounded-bl">
+                Customer Name
+              </p>
+            </Grid>
+            <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
+              <p class="bg-indigo-300 p-2.5 w-full text-white rounded-tr rounded-br">
+                {data.customerName}
+              </p>
+            </Grid>
+            <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
+              <p class="bg-indigo-400 p-2.5 w-full text-white rounded-tl rounded-bl">
+                Customer Country
+              </p>
+            </Grid>
+            <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
+              <p class="bg-indigo-300 p-2.5 w-full text-white rounded-tr rounded-br">
+                {data.customerCountry}
+              </p>
+            </Grid>
+            <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
+              <p class="bg-indigo-400 p-2.5 w-full text-white rounded-tl rounded-bl">
+                Email
+              </p>
+            </Grid>
+            <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
+              <p class="bg-indigo-300 p-2.5 w-full text-white rounded-tr rounded-br">
+                {data.email}
+              </p>
+            </Grid>
           </Grid>
-          <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
-            <p class="bg-indigo-300 p-2.5 w-full text-white rounded-tr rounded-br">{data.brand}</p>
-          </Grid>
-          <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
-            <p class="bg-indigo-400 p-2.5 w-full text-white rounded-tl rounded-bl">
-              Customer Name
-            </p>
-          </Grid>
-          <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
-            <p class="bg-indigo-300 p-2.5 w-full text-white rounded-tr rounded-br">
-              {data.customerName}
-            </p>
-          </Grid>
-          <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
-            <p class="bg-indigo-400 p-2.5 w-full text-white rounded-tl rounded-bl">
-              Customer Country
-            </p>
-          </Grid>
-          <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
-            <p class="bg-indigo-300 p-2.5 w-full text-white rounded-tr rounded-br">
-              {data.customerCountry}
-            </p>
-          </Grid>
-          <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
-            <p class="bg-indigo-400 p-2.5 w-full text-white rounded-tl rounded-bl">
-              Email
-            </p>
-          </Grid>
-          <Grid item sm={12} md={6} style={{ marginTop: 10 }}>
-            <p class="bg-indigo-300 p-2.5 w-full text-white rounded-tr rounded-br">{data.email}</p>
-          </Grid>
-        </Grid>
 
-        {/* );
+          {/* );
         })} */}
-      </Paper>
+        </Paper>
       </div>
       <div class="mt-5">
-      <Paper className={classes.pageContent}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            width: "100%",
-            marginBottom: "20px",
-          }}
-        >
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => {
-              setOpenPopup(true);
+        <Paper className={classes.pageContent}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              width: "100%",
+              marginBottom: "20px",
             }}
-            startIcon={<AddIcon />}
           >
-            Add Order
-          </Button>
-        </div>
-        <Popup
-          title={"Add Order For Customer"}
-          openPopup={openPopup}
-          setOpenPopup={setOpenPopup}
-        >
-          <AddCustomerOrders isLoading={isLoading} setIsLoading={setIsLoading} id={id}/>
-        </Popup>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => {
+                setOpenPopup(true);
+              }}
+              startIcon={<AddIcon />}
+            >
+              Add Order
+            </Button>
+          </div>
+          <Popup
+            title={"Add Order For Customer"}
+            openPopup={openPopup}
+            setOpenPopup={setOpenPopup}
+          >
+            <AddCustomerOrders
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              id={id}
+            />
+          </Popup>
 
-        <CustomerOrderList
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          id={id}
-        />
-      </Paper>
+          <CustomerOrderList
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            id={id}
+          />
+        </Paper>
       </div>
     </div>
   );

@@ -15,14 +15,11 @@ const MainAdmin = () => {
   // const [show, setShow] = useState(false);
   // const [profile, setProfile] = useState(false);
 
-  const classes = useStyles();
-
   const [dataset1, setDataset1] = useState([]);
   const [dataset2, setDataset2] = useState([]);
 
   const [switchOrder, setSwitchOrder] = useState(true);
   const [switchRevenue, setSwitchRevenue] = useState(true);
-  const [checked, setChecked] = React.useState(false);
 
   const firstName = dataset1.map((item) => {
     return item.firstName;
